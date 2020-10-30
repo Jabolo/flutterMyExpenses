@@ -2,4 +2,4 @@
 
 A Flutter project.
 Coded when passing the course on the Udemy platform.
-![](my_expenses.gif)
+![](my_expenses[1].gif)
