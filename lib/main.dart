@@ -69,6 +69,16 @@ class _MyHomePageState extends State<MyHomePage> {
         id: 3.toString(),
         title: 'Kiwi',
         amount: 12,
+        time: DateTime.now().subtract(new Duration(days: 1))),
+    Transaction(
+        id: 4.toString(),
+        title: 'Pineapple',
+        amount: 10.3,
+        time: DateTime.now().subtract(new Duration(days: 5))),
+    Transaction(
+        id: 5.toString(),
+        title: 'Carrrrot',
+        amount: 1.1,
         time: DateTime.now().subtract(new Duration(minutes: 10))),
   ];
 
@@ -84,6 +94,10 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _deleteTransaction(String id) {
+    setState(() => _userTransations.removeWhere((tx) => tx.id == id));
+  }
+
   List<Transaction> get _recentTransactions {
     return _userTransations
         .where((element) =>
@@ -96,7 +110,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Flutter App'),
+        title: Text('Where\'s my \$\$\$'),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.add),
@@ -113,7 +127,7 @@ class _MyHomePageState extends State<MyHomePage> {
               width: double.infinity,
               child: new Chart(_recentTransactions),
             ),
-            TransactionList(_userTransations),
+            TransactionList(_userTransations, _deleteTransaction),
           ],
         ),
       ),
